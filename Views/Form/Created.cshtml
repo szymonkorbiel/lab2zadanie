@@ -1,0 +1,35 @@
+﻿@model lab2zadanie.Models.FormModel
+@{
+    ViewData["Title"] = "Form-Created";
+}
+
+<div class="text-left">
+    <h1 class="display-4">Dane z formularza</h1>
+    @Html.DisplayNameFor(model => model.Name):          @Html.DisplayFor(model => model.Name)
+    <br />
+    @Html.DisplayNameFor(model => model.DataUrodzenia):   @Html.DisplayFor(model => model.DataUrodzenia)
+    <br />
+</div>
+
+@{
+
+    void Obliczenia()
+    {
+        DateTime date = DateTime.Now;
+        var roznica = (date - Model.DataUrodzenia).Days;
+        var Year = Model.DataUrodzenia.Year;
+        <p>Dni, które upłynęły od daty urodzenia do dnia dzisiejszego: <span>@roznica</span></p>
+
+        if (((Year % 4 == 0) && (Year % 100 != 0)) || (Year % 400 == 0))
+        {
+            <p>Rok urodzenia był rokiem przestępnym</p>
+        }
+        else
+        {
+            <p>Rok urodzenia nie był rokiem przestępnym</p>
+        }
+    }
+    Obliczenia();
+
+
+}
